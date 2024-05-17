@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        .details {
+            margin-top: 20px;
+        }
+
+        .details p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+
+        .file-link {
+            color: #007bff;
+        }
+
+        .file-link:hover {
+            text-decoration: underline;
+        }
+
+        .admin-notes {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Report</h1>
+    <div class="details">
+        <p><strong>Title:</strong> {{ file.title }}</p>
+        <p><strong>Offender:</strong> {{ file.name }}</p>
+        <p><strong>Description:</strong> {{ file.description }}</p>
+        <p><strong>Admin Notes:</strong> {{ file.admin_notes }}</p>
+        <p><strong>Uploaded At:</strong> {{ file.uploaded_at }}</p>
+        <p><strong>Status:</strong> {{ file.get_status_display }}</p>
+        {% if file.file %}
+    <p><strong>File:</strong> <a class="file-link" href="{{ file.file.url }}" target="_blank">{{ file.file.name }}</a></p>
+    {% if file.file.name|lower|slice:"-4:" == ".pdf" %}
+        <embed src="{{ file.file.url }}" type="application/pdf" width="100%" height="600px">
+    {% elif file.file.name|lower|slice:"-4:" == ".txt" %}
+        <embed src="{{ file.file.url }}" type="text/plain" width="100%" height="600px">
+    {% else %}
+        <embed src="{{ file.file.url }}" type="image/jpeg" width="100%" height="auto">
+    {% endif %}
+{% else %}
+    <p><strong>File:</strong> No file uploaded</p>
+{% endif %}
+    </div>
+
+    <!-- Delete Button -->
+    <form method="POST" action="{% url 'oauth_app:delete_report' pk=file.pk %}" onsubmit="return confirm('Are you sure you want to delete this report?');">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete Report</button>
+    </form>
+
+    <div class="back-btn">
+        <a href="{% url 'myReports' %}" class="btn btn-primary">Back</a>
+    </div>
+</div>
+
+</body>
+</html>

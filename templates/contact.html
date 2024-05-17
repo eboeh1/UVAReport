@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+{% if user.is_staff %}
+    <script>
+          document.location.href = "https://b22app-0de6b2caf59d.herokuapp.com/admin/";
+    </script>
+{% endif %}
+<head>
+  <title>UVA Report</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      border-bottom: 5px solid #b1d2f5;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {display: flex;}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100vh;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+
+    /* Style the button that is used to open and close the collapsible content */
+    .collapsible {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        /* font-size: 15px; */
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .active, .collapsible:hover {
+        background-color: #ccc;
+      }
+
+      .content {
+        /* padding: 0 18px; */
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+        margin-bottom: 200px;
+      }
+
+      .collapsible-content {
+        padding: 0 18px; 
+        font-size: 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+      }
+
+      .collapsible .toggle-icon::after {
+        content: "+"; 
+        float: right; 
+        margin-left: 5px; /
+      }
+
+      /* rotate icon when content is expanded */
+      .collapsible.active .toggle-icon::after {
+        transform: rotate(45deg); /* Rotate the plus sign to form a cross */
+      }
+
+      body {
+        background-color: #f1f1f1;
+      }
+
+      p {
+        font-size: 18px;
+      }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class><a href="/home">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/honor">Honor</a></li>
+        <li class="active"><a href="/contact">Contact</a></li>
+          <li><a href="/myReports">My Reports</a></li>
+          <li>{% if is_site_admin %}
+                  <a href="/adminpanel">Admin Dashboard</a>
+              {% endif %}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+        <!-- This adds left side bar-->
+        <!-- <div class="col-sm-2 sidenav">
+        </div> -->
+    <div class="col-sm-8 text-left"> 
+
+      <h1>Contact Us</h1>
+      <p>The creators of this application are current second and third year students at the University of Virginia. Feel free to contact them using the provided information. </p>
+      <hr>
+
+      <h3>Hassan Al Moalim: Software Architect </h3>
+      <p>Bachelors of Science in Computer Science, Class of 2025. 
+        <br>
+        Email: rbp2pv@virginia.edu</p>
+
+      <h3>Ned Boehling: Devops Manager</h3>
+        <p>Bachelors of Science in Computer Science, Class of 2026. 
+          <br>
+          Email: qwf3nj@virginia.edu</p>
+
+      <h3>Victoria DaRosa: Requirements Manager</h3>
+          <p> Bachelors of Arts in Computer Science with a minor in Data Science, Class of 2025. 
+            <br>
+            Email: ktb2rz@virginia.edu</p>
+
+      <h3>Isabelle Engel: Scrum Master</h3>
+      <p> Bachelors of Science in Commerce with a double major in Computer Science, Class of 2025.
+        <br>
+        Email: ngs5tf@virginia.edu</p>
+
+      <!-- <img src="images/2024_StudCo_Headshot-9431.jpg.jpg" alt="Isabelle Headshot">--> 
+
+
+        <h3>Ryan Quiram: Testing Manager</h3>
+        <p> Bachelors of Arts in Computer Science with a minor in History, Class of 2025. 
+          <br>
+          Email: zhe5qq@virginia.edu</p>
+        
+    </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <p> Published by group B-22, Spring 2024 </p>
+</footer>
+
+</body>
+</html>

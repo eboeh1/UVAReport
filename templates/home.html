@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+{% if user.is_staff %}
+    <script>
+          document.location.href = "https://b22app-0de6b2caf59d.herokuapp.com/admin/";
+    </script>
+{% endif %}
+<head>
+  <title>UVA Report</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      border-bottom: 5px solid #b1d2f5;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {display: flex; }
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100vh;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+
+    /* Button to file a report */ 
+    .filing button {
+            padding: 10px 20px;
+            border-radius: 15px;
+            border: none;
+            background-color: #fafafa;
+            color: #1c07b9;
+            cursor: pointer;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    
+      /* container for the button and relevant info */ 
+      .file {
+        text-align: center; 
+        margin-top: 20px; /* creates margin above buttons and below title */ 
+        background-color:#b1d2f5;
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+
+      /* Style the button that is used to open and close the collapsible content */
+      .collapsible {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        /* font-size: 15px; */
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+      .active, .collapsible:hover {
+        background-color: #ccc;
+      }
+
+      /* Style the collapsible content. Note: hidden by default */
+      .content {
+        /* padding: 0 18px; */
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+        margin-bottom: 400px;
+      }
+
+      .collapsible-content {
+        padding: 0 18px; 
+        font-size: 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+      }
+
+      body {
+        background-color: #f1f1f1;
+      }
+
+      p {
+        font-size: 18px;
+      }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/home">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/honor">Honor</a></li>
+        <li><a href="/contact">Contact</a></li>
+          <li><a href="/myReports">My Reports</a></li>
+          <li>{% if is_site_admin %}
+                  <a href="/adminpanel">Admin Dashboard</a>
+              {% endif %}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <!-- <div class="col-sm-2 sidenav">
+    </div> -->
+    <div class="col-sm-8 col-sm-offset-2 text-left"> 
+      <h1>UVA Report</h1>
+      <p>UVA Report is a whistleblower application used to report academic fraud with a focus on class design rather that just reporting your peers. We have noticed that many people are irritated by cheating that occurs at UVA, but few want to be responsible for the consequences of their peers. This site emphasizes reporting broad cases of cheating that have been observed by students. UVA report wants professors to be aware of how cheating it happening so they can design that class in a way to prevent cheating in the future.  </p>
+      <hr>
+
+<div class="file"> 
+      <h2>File A Report</h2>
+
+      <h4>Click below to file a report of academic fraud.</h4>
+
+      <div class="filing"> 
+      <button> <a href="/form">Report</a> </button>
+      </div>
+    </div>
+      <br> 
+
+        <h3>Disclaimer: This site is for school project use only</h3>
+        <p>Our group built this project for Advanced Software Development with Professor Elbaum. This is not intended to gather any reports of real honor violations at this time. </p>
+        <p> If you'd like to learn more about how to file a real honor report, please go to the Honor page of our site. If you would like to know more about why we decided to build this app or the members of our team, 
+          please check out the "about" and "contact" pages of our site, respectively. 
+        </p>
+        <br>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <p> Published by group B-22, Spring 2024 </p>
+</footer>
+
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
