@@ -52,8 +52,7 @@ INSTALLED_APPS = [
     'storages',
 ]
 
-AWS_ACCESS_KEY_ID = ''
-AWS_SECRET_ACCESS_KEY = ''
+
 DEFAULT_FILE_STORAGE = 'oauth_project.storage_backends.MediaStorage'
 AWS_STORAGE_BUCKET_NAME = 'b-22'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
